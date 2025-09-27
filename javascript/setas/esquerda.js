@@ -2,12 +2,13 @@ import { answersValues, setIndexImg, getIndexImg, setIsAnimating, getIsAnimating
 
 async function leftArrow() {
     leftarrow.addEventListener("click", () => {
-        if (isAnimating) {return}
-        isAnimating = true
+        if (getIsAnimating()) {return}
+        setIsAnimating(true)
         preventspan.setAttribute("style", "display: block")
 
-        let previousIndex = indexImg
-        indexImg = (indexImg - 1 + answersValues.length) % answersValues.length
+        let previousIndex = getIndexImg()
+        let indexImg = (previousIndex - 1 + answersValues.length) % answersValues.length
+        setIndexImg(indexImg)
 
         answersValues[indexImg].setAttribute("style", "display: block");
         answersValues[previousIndex].classList.add("leftdisable");
@@ -19,7 +20,7 @@ async function leftArrow() {
             answersValues[previousIndex].setAttribute("style", "display: none");
             answersValues[indexImg].setAttribute("style", "display: block")
             preventspan.removeAttribute("style")
-            isAnimating = false
+            setIsAnimating(false)
         }, 1500)
     })
 }
