@@ -1,6 +1,4 @@
-import { answersValues } from "../index.js"
-import { indexImg } from "../index.js"
-import { isAnimating } from "../index.js"
+import { answersValues, setIndexImg, getIndexImg, setIsAnimating, getIsAnimating} from "../index.js"
 
 async function rightArrow() {
     rightarrow.addEventListener("click", () => {

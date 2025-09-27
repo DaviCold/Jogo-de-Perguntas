@@ -413,8 +413,23 @@ async function configureTypeTwoOneQuestionTransition ({
     })
 }
 
-export let indexImg = 0
-export let isAnimating = false
+let indexImg = 0;
+function setIndexImg (index) {
+    indexImg = index
+}
+function getIndexImg() {
+  return indexImg;
+}
+
+let isAnimating = false;
+function setIsAnimating (isAnimat) {
+    isAnimating = isAnimat
+}
+function getIsAnimating (getIsAnimat) {
+    return isAnimating;
+}
+
+export {setIndexImg, getIndexImg, setIsAnimating, getIsAnimating}
 import leftArrow from "./setas/esquerda.js";
 import rightArrow from "./setas/direita.js";
 
