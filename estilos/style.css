@@ -1,0 +1,639 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Gabriela');
+
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes borderAnimated {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg;
+    }
+}
+
+@keyframes enterAnimated {
+    from {
+        opacity: 0;
+        left: -150px;
+    }
+
+    to {
+        opacity: 1;
+        left: 0px;
+    }
+}
+
+@keyframes buttonDesappear {
+    from {
+        rotate: 0deg;
+        scale: 1;
+        left: 0px;
+        bottom: 0px;
+        opacity: 1;
+    }
+
+    10% {
+        rotate: 10deg;
+    }
+
+    30% {
+        left: 100px;
+    }
+
+    to {
+        rotate: -360deg;
+        scale: 0;
+        left: 0px;
+        bottom: 0px;
+        opacity: 0;
+    }
+}
+
+@keyframes lineAnimated {
+    from {
+        left: -40px;
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0.8;
+    }
+
+    to {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes toDesappear {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes  toAppear{
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes  wrongAnimate{
+    from {
+        width: 0px;
+    }
+
+    to {
+        width: 420px;
+    }
+}
+
+@keyframes  wrongAnimated{
+    from {
+        width: 420px;
+    }
+
+    to {
+        width: 0px;
+    }
+}
+
+@keyframes  leftArrowExit{
+    from {
+        width: 260px;
+        height: 308px;
+        opacity: 1;
+        right: 0px;
+        z-index: 1;
+    }
+
+    50% {
+        right: -150px;
+    }
+
+
+    to {
+        width: 195px;
+        height: 231px;
+        opacity: 0;
+        right: -100px;
+        z-index: 0;
+    }
+}
+
+@keyframes  leftArrowEnter{
+    from {
+        width: 195px;
+        height: 231px;
+        opacity: 0;
+        left: -100px;
+        z-index: 0;
+    }
+
+    50% {
+        left: -100px;
+    }
+
+
+    to {
+        width: 260px;
+        height: 308px;
+        opacity: 1;
+        left: 0px;
+        z-index: 1;
+    }
+}
+
+@keyframes  rightArrowExit{
+    from {
+        width: 260px;
+        height: 308px;
+        opacity: 1;
+        left: 0px;
+        z-index: 1;
+    }
+
+    50% {
+        left: -150px;
+    }
+
+
+    to {
+        width: 195px;
+        height: 231px;
+        opacity: 0;
+        left: -100px;
+        z-index: 0;
+    }
+}
+
+@keyframes  rightArrowEnter{
+    from {
+        width: 195px;
+        height: 231px;
+        opacity: 0;
+        right: -100px;
+        z-index: 0;
+    }
+
+    50% {
+        right: -100px;
+    }
+
+
+    to {
+        width: 260px;
+        height: 308px;
+        opacity: 1;
+        right: 0px;
+        z-index: 1;
+    }
+}
+
+@keyframes  congratulationsAnimate{
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 70%;
+    }
+}
+
+@keyframes  congratulationsAnimated{
+    from {
+        width: 70%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Gabriela;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(to right, #18003C, #0C0C3D); */
+    background: url(../imagens/brilho.top.png) top center no-repeat;
+    background-size: cover;
+}
+
+#imgwrong {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0px;
+    z-index: 1;
+}
+
+#preventspan {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* #video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+} */
+
+#container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#startpad {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 150px;
+    background: conic-gradient(from var(--angle), #FFF3FE, #16003d, #16003D, #A755C2, #FFF3FE);
+    animation: borderAnimated  3s linear infinite;
+    border-radius: 50%;
+    font-size: 2.5em;
+    cursor: pointer;
+
+    & #start {
+        display: flex;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 285px;
+        height: 135px;
+        background: white;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+#contquest {
+    display: none;
+    position: relative;
+    width: 310px;
+    height: 110px;
+    min-height: 110px;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    justify-content: center;
+    top: 20px;
+    font-size: 1em;
+
+    & .line1q {
+        animation: lineAnimated 2s ease 0s;
+        animation-fill-mode: forwards;
+    }
+
+    & .line2q {
+        animation: lineAnimated 1.5s ease 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    & .line3q {
+        animation: lineAnimated 1.25s ease 0.75s;
+        animation-fill-mode: forwards;
+    }
+
+    & .line4q {
+        animation: lineAnimated 1s ease 1s;
+        animation-fill-mode: forwards;
+    }
+
+    & .quests {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    & .linesqs {
+            display: none;
+            opacity: 0;
+            position: relative;
+            left: -40px;
+        }
+
+    & .linesexit {
+        left: 0;
+        animation: toDesappear 0.4s linear;
+    }
+}
+
+.contquestAppear {
+    animation: toAppear 3s ease;
+    animation-fill-mode: forwards;
+}
+
+.contquestDesappear {
+    animation: toDesappear 2.7s ease;
+    animation-fill-mode: forwards;
+}
+
+#contanswer {
+    display: none;
+    position: relative;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 75%;
+    min-height: 356px;
+    text-align: center;
+
+    & .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 250px;
+        height: 50px;
+        background-color: white;
+        border-radius: 25px;
+    }
+
+    & .buttpad {
+        position: relative;
+        width: 260px;
+        height: 60px;
+        border-radius: 30px;
+        background: conic-gradient(from var(--angle), #FFF3FE, #16003d, #16003D, #A755C2, #FFF3FE);
+        animation: borderAnimated 5s linear infinite;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    & .exit1 {
+        display: block;
+        animation: buttonDesappear 2.7s ease, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .exit2 {
+        display: block;
+        animation: buttonDesappear 2.4s ease 0.3s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .exit3 {
+        display: block;
+        animation: buttonDesappear 2.1s ease 0.6s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .exit4 {
+        display: block;
+        animation: buttonDesappear 1.8s ease 0.9s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .enter1 {
+        display: block;
+        animation: enterAnimated 2.7s ease, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .enter2 {
+        display: block;
+        animation: enterAnimated 2.4s ease 0.3s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .enter3 {
+        display: block;
+        animation: enterAnimated 2.1s ease 0.6s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .enter4 {
+        display: block;
+        animation: enterAnimated 1.8s ease 0.9s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .toappear {
+        animation: toAppear 2.7s ease 1s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .todesappear {
+        animation: toDesappear 2.7s ease, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .answers {
+        display: none;
+        position: absolute;
+        flex-flow: column nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+    }
+
+    .answerstypetwo{
+        display: flex;
+        position: absolute;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: center;
+        height: 80%;
+        width: 260px;
+
+        /* (Width deve ser um valor fixo)  
+        O width de answertypetwo deve ser o mesmo da caixa, para que durante a transição, a caixa se posicione no lugar sem a mudança dinâmica do width de answertypetwo. */
+
+        & .buttonpadtypetwo {
+            display: none;
+            height: 308px;
+
+            & .button {
+                width: 93.9%;
+                height: 94.8%;
+            }
+        }
+
+        & .buttonOneVisible {
+            display: block; 
+            animation: borderAnimated 5s linear infinite;
+        }
+
+        & .buttonInvisible {
+            display: none; 
+            opacity: 1;
+        }
+
+        /* (.leftdisable; .leftactive; .rightdisable; .rightactive)
+        Posso trocar "position:absolute" por "postion:relative" ou virse-versa, estes atributos servem para que as caixas não colidem durante a transição.  */
+
+        & .leftdisable {
+            position: absolute;
+            animation: leftArrowExit 1.5s ease-in-out, borderAnimated 5s linear infinite;
+            animation-fill-mode: forwards;
+        }
+
+        & .leftactive {
+            position: relative;
+            animation: leftArrowEnter 1.5s ease-in-out, borderAnimated 5s linear infinite;
+            animation-fill-mode: forwards;
+        }
+
+        & .rightdisable {
+            position: absolute;
+            animation: rightArrowExit 1.5s ease-in-out, borderAnimated 5s linear infinite;
+            animation-fill-mode: forwards;
+        }
+
+        & .rightactive {
+            position: relative;
+            animation: rightArrowEnter 1.5s ease-in-out, borderAnimated 5s linear infinite;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    & #arrow {
+        display: none;
+        position: absolute;
+        align-items: center;
+        justify-content: space-around;
+        opacity: 0;
+        width: 256px;
+        bottom: 10%;
+        z-index: 1;
+
+        & #leftarrow {
+            rotate: 180deg;
+        }
+
+        & .arrow {
+            width: 25%;
+            cursor: pointer;
+        }
+    }
+
+    & .arrowAppear {
+        display: flex; 
+        animation: toAppear 2.7s ease 1s; 
+        animation-fill-mode: forwards;
+    }
+
+    & .arrowDesappear {
+        display: flex;
+        animation: toDesappear 2.7s ease; 
+        animation-fill-mode: forwards;
+    }
+}
+
+#end {
+    display: none;
+    position: absolute;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    & .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 100px;
+        background-color: white;
+        border-radius: 25px;
+    }
+
+    & .buttpad {
+        display: block;
+        position: relative;
+        width: 310px;
+        height: 110px;
+        border-radius: 30px;
+        background: conic-gradient(from var(--angle), #FFF3FE, #16003d, #16003D, #A755C2, #FFF3FE);
+        animation: borderAnimated 5s linear infinite;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    & #congratulations {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0%;
+    }
+
+    & #restart {
+        display: none;
+        font-size: 2.5em;
+    }
+
+    & .toappear {
+        animation: toAppear 2.7s ease 1s, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+
+    & .todesappear {
+        animation: toDesappear 2.7s ease, borderAnimated 5s linear infinite;
+        animation-fill-mode: forwards;
+    }
+}
