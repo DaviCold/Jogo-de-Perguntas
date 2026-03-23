@@ -4,8 +4,6 @@ const contanswer = document.querySelector("#contanswer")
 const wrong = document.querySelector("#imgwrong")
 const preventspan = document.querySelector("#preventspan")
 const arrow = document.querySelector("#arrow")
-const leftarrow = document.querySelector("#leftarrow")
-const rightarrow = document.querySelector("#rightarrow")
 const congratulations = document.querySelector("#congratulations")
 const end = document.querySelector("#end")
 const restart = document.querySelector("#restart")
@@ -414,6 +412,8 @@ async function configureTypeTwoOneQuestionTransition ({
     })
 }
 
+/* O código abaixo exporta funções com valores e tem finalidade para dizer quando as caixas de respostas estão em animação e em qual das caixas estão (index). No final ele importa as funções das setas prontas.*/
+
 let indexImg = 0;
 function setIndexImg (index) {
     indexImg = index
@@ -426,13 +426,15 @@ let isAnimating = false;
 function setIsAnimating (isAnimat) {
     isAnimating = isAnimat
 }
-function getIsAnimating (getIsAnimat) {
+function getIsAnimating () {
     return isAnimating;
 }
 
 export {setIndexImg, getIndexImg, setIsAnimating, getIsAnimating}
 import leftArrow from "./setas/esquerda.js";
 import rightArrow from "./setas/direita.js";
+
+
 
 async function forQuest2() {
     return configureTypeOneQuestionTransition({
