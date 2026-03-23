@@ -1,4 +1,4 @@
-import {answersValues, setIndexImg, indexImg, setIsAnimating, isAnimating} from "../index.js"
+import { setIndexImg, indexImg, setIsAnimating, isAnimating, answersValues } from "../variables.js"
 
 async function rightArrow() {
     rightarrow.addEventListener("click", () => {

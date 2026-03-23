@@ -1,6 +1,6 @@
 /* Importações e Exportações */
 
-import { preventspan, arrow, setAnswersValues, setIndexImg, lines } from "../index.js";
+import { preventspan, arrow, lines, setIndexImg, setAnswersValues } from "../variables.js";
 
 export { 
     configureTypeOneQuestionTransition, 
@@ -17,7 +17,7 @@ export {
 
 /* Transição de perguntas tipo 1 para tipo 1. */
 
-async function configureTypeOneQuestionTransition ({
+function configureTypeOneQuestionTransition ({
     answerCorrect,
     nextAnswers,
     currentButtons,
@@ -70,7 +70,7 @@ async function configureTypeOneQuestionTransition ({
 
 /* Transição de perguntas tipo 1 para tipo 2. */
 
-async function configureTypeTwoQuestionTransition ({
+function configureTypeTwoQuestionTransition ({
     answerCorrect,
     futureAnswers,
     nextAnswers,
@@ -133,7 +133,7 @@ async function configureTypeTwoQuestionTransition ({
 
 /* Transição de perguntas tipo 2 para tipo 2. */
 
-async function configureTypeTwoTwoQuestionTransition ({
+function configureTypeTwoTwoQuestionTransition ({
     answerCorrect,
     futureAnswers,
     nextAnswers,
@@ -196,7 +196,7 @@ async function configureTypeTwoTwoQuestionTransition ({
 
 /* Transição de perguntas tipo 2 para tipo 1. */
 
-async function configureTypeTwoOneQuestionTransition ({
+function configureTypeTwoOneQuestionTransition ({
     answerCorrect,
     nextAnswers,
     currentButtons,

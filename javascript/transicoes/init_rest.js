@@ -1,4 +1,4 @@
-import { restart, preventspan, contanswer, contquest, arrow, lines, answers, buttonq, startpad, end } from "../index.js";
+import { restart, preventspan, contanswer, contquest, arrow, startpad, end, lines, answers, buttonq } from "../variables.js";
 
 export { forQuest1, forStart }
 

@@ -1,4 +1,4 @@
-import { preventspan, contquest, end, congratulations, restart, arrow } from "../index.js";
+import { preventspan, contquest, end, congratulations, restart, arrow } from "../variables.js";
 
 export { forEndTypeOne, forEndTypeTwo }
 
