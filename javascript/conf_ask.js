@@ -1,7 +1,7 @@
 import leftArrow from "./setas/esquerda.js";
 import rightArrow from "./setas/direita.js";
 import { answers, answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10, buttonq, lines } from "./variables.js";
-import { forQuest1, forStart } from "./transicoes/init_rest.js";
+import { forQuest1, forMenu } from "./transicoes/init_rest.js";
 import { forEndTypeOne } from "./transicoes/last_ask.js";
 import {
     configureTypeOneQuestionTransition, 
@@ -166,5 +166,5 @@ async function wait() {
     await forQuest9();
     await forQuest10();
     await forFinish();
-    await forStart();
+    await forMenu();
 }

@@ -1,6 +1,6 @@
-import { restart, preventspan, contanswer, contquest, arrow, startpad, end, lines, answers, buttonq } from "../variables.js";
+import { restart, preventspan, contanswer, contquest, arrow, startpad, menu, end, lines, answers, buttonq } from "../variables.js";
 
-export { forQuest1, forStart }
+export { forQuest1, forMenu }
 
 
 /* Função de iniciar o jogo */
@@ -8,7 +8,7 @@ export { forQuest1, forStart }
 async function forQuest1() {
     return new Promise(function (resolve) {
         startpad.addEventListener("click", function () {
-            startpad.setAttribute("style", "animation: toDesappear 1.5s ease, borderAnimated  3s linear infinite; animation-fill-mode: forwards;")
+            menu.setAttribute("style", "animation: toDesappear 1.5s ease; animation-fill-mode: forwards;")
             contanswer.setAttribute("style", "display: flex")
             preventspan.setAttribute("style", "display: block")
 
@@ -43,9 +43,9 @@ async function forQuest1() {
 }
 
 
-/* Função de voltar para o menu de iniciar. */
+/* Função de voltar para o menu. */
 
-async function forStart() {
+async function forMenu() {
     return new Promise(function (resolve) {
         restart.addEventListener("click", function () {
             preventspan.setAttribute("style", "display: block")
@@ -63,7 +63,7 @@ async function forStart() {
             Object.values(buttonq).forEach(group => group.forEach(button => { button.removeAttribute("style"), button.classList.remove("enter1", "enter2", "enter3", "enter4", "exit1", "exit2", "exit3", "exit4", "todesappear", "toappear", "buttonInvisible") }))
 
             setTimeout(() => {
-                startpad.setAttribute("style", "animation: toAppear 1.5s ease, borderAnimated  3s linear infinite; animation-fill-mode: forwards;")
+                menu.setAttribute("style", "animation: toAppear 1.5s ease; animation-fill-mode: forwards;")
                 restart.classList.remove("todesappear")
                 restart.removeAttribute("style")
                 end.removeAttribute("style")

@@ -1,9 +1,10 @@
 /* Variáveis --> Modelo de Objeto de Documento (DOM) / Sem necessidade de funções de set/alterador, porque são variáveis estáticcas. */
 
-export { contquest, startpad, contanswer, wrong, preventspan, arrow, congratulations, end, restart, lines, buttonq, answers, answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10}
+export { contquest, startpad, menu, contanswer, wrong, preventspan, arrow, congratulations, end, restart, lines, buttonq, answers, answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10}
 
 const contquest = document.querySelector("#contquest");
 const startpad = document.querySelector("#startpad");
+const menu = document.querySelector("#menu");
 const contanswer = document.querySelector("#contanswer");
 const wrong = document.querySelector("#imgwrong");
 const preventspan = document.querySelector("#preventspan");
