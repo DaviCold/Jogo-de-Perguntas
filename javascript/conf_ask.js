@@ -22,7 +22,8 @@ Configure: (do ponto de vista da pergunta de onde você está)
     a caixa com as atuais respostas,
     as resposta atuais (estão conectadas por uma classe),
     as respostas da próxima pergunta (estão conectadas por uma classe),
-    as próximas linhas da caixa de pergunta
+    as caixa de linhas da próxima pergunta (caixa dentro do container de perguntas),
+    as próximas linhas da caixa de pergunta,
     as caixa de linhas da pergunta atual (caixa dentro do container de perguntas), 
     e as linhas da caixa da pergunta atual. 
 
@@ -40,6 +41,7 @@ function forQuest2() {
         currentAnswers: answers.answers1,
         currentButtons: buttonq.buttonq1,
         nextButtons: buttonq.buttonq2,
+        nextquests: quests.quest2,
         nextLines: lines.linesq2,
         currentquests: quests.quest1,
         currentLines: lines.linesq1
@@ -54,6 +56,7 @@ function forQuest3() {
         currentAnswers: answers.answers2,
         currentButtons: buttonq.buttonq2,
         nextButtons: buttonq.buttonq3,
+        nextquests: quests.quest3,
         nextLines: lines.linesq3,
         currentquests: quests.quest2,
         currentLines: lines.linesq2
@@ -68,6 +71,7 @@ function forQuest4() {
         currentAnswers: answers.answers3,
         currentButtons: buttonq.buttonq3,
         nextButtons: buttonq.buttonq4,
+        nextquests: quests.quest4,
         nextLines: lines.linesq4,
         currentquests: quests.quest3,
         currentLines: lines.linesq3
@@ -82,6 +86,7 @@ function forQuest5() {
         currentAnswers: answers.answers4,
         currentButtons: buttonq.buttonq4,
         nextButtons: buttonq.buttonq5,
+        nextquests: quests.quest5,
         nextLines: lines.linesq5,
         currentquests: quests.quest4,
         currentLines: lines.linesq4
@@ -96,6 +101,7 @@ function forQuest6() {
         currentAnswers: answers.answers5,
         currentButtons: buttonq.buttonq5,
         nextButtons: buttonq.buttonq6,
+        nextquests: quests.quest6,
         nextLines: lines.linesq6,
         currentquests: quests.quest5,
         currentLines: lines.linesq5
@@ -113,6 +119,7 @@ function forQuest7() {
         currentAnswers: answers.answers6,
         currentButtons: buttonq.buttonq6,
         nextButtons: buttonq.buttonq7,
+        nextquests: quests.quest7,
         nextLines: lines.linesq7,
         currentquests: quests.quest6,
         currentLines: lines.linesq6
@@ -130,6 +137,7 @@ function forQuest8() {
         currentAnswers: answers.answers7,
         currentButtons: buttonq.buttonq7,
         nextButtons: buttonq.buttonq8,
+        nextquests: quests.quest8,
         nextLines: lines.linesq8,
         currentquests: quests.quest7,
         currentLines: lines.linesq7
@@ -144,6 +152,7 @@ function forQuest9() {
         currentAnswers: answers.answers8,
         currentButtons: buttonq.buttonq8,
         nextButtons: buttonq.buttonq9,
+        nextquests: quests.quest9,
         nextLines: lines.linesq9,
         currentquests: quests.quest8,
         currentLines: lines.linesq8
@@ -158,6 +167,7 @@ function forQuest10() {
         currentAnswers: answers.answers9,
         currentButtons: buttonq.buttonq9,
         nextButtons: buttonq.buttonq10,
+        nextquests: quests.quest10,
         nextLines: lines.linesq10,
         currentquests: quests.quest9,
         currentLines: lines.linesq9

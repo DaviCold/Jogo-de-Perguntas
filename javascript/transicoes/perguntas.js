@@ -23,6 +23,7 @@ function configureTypeOneQuestionTransition ({
     currentAnswers,
     currentButtons,
     nextButtons,
+    nextquests,
     nextLines,
     currentquests,
     currentLines
@@ -30,6 +31,7 @@ function configureTypeOneQuestionTransition ({
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
             nextAnswers.setAttribute("style", "display: flex");
+            nextquests.style.display = "block";
             preventspan.setAttribute("style", "display: block");
 
             for (let i = 0; i < currentButtons.length; i++) {
@@ -83,6 +85,7 @@ function configureTypeTwoQuestionTransition ({
     currentAnswers,
     currentButtons,
     nextButtons,
+    nextquests,
     nextLines,
     currentquests,
     currentLines
@@ -90,6 +93,7 @@ function configureTypeTwoQuestionTransition ({
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
             nextAnswers.classList.add("answerstypetwo");
+            nextquests.style.display = "block";
             preventspan.setAttribute("style", "display: block");
             arrow.setAttribute("style", "display:flex");
             arrow.classList.add("arrowAppear");
@@ -151,6 +155,7 @@ function configureTypeTwoTwoQuestionTransition ({
     currentAnswers,
     currentButtons,
     nextButtons,
+    nextquests,
     nextLines,
     currentquests,
     currentLines
@@ -158,6 +163,7 @@ function configureTypeTwoTwoQuestionTransition ({
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
             nextAnswers.classList.add("answerstypetwo");
+            nextquests.style.display = "block";
             preventspan.setAttribute("style", "display: block");
             let answersValue = Object.values(futureAnswers);
             setAnswersValues(answersValue);
@@ -217,6 +223,7 @@ function configureTypeTwoOneQuestionTransition ({
     currentAnswers,
     currentButtons,
     nextButtons,
+    nextquests,
     nextLines,
     currentquests,
     currentLines
@@ -224,6 +231,7 @@ function configureTypeTwoOneQuestionTransition ({
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
             nextAnswers.setAttribute("style", "display: flex");
+            nextquests.style.display = "block";
             preventspan.setAttribute("style", "display: block");
             arrow.classList.remove("arrowAppear");
             arrow.classList.add("arrowDesappear");
