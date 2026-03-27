@@ -72,6 +72,8 @@ async function forEndTypeTwo({
             }
 
             setTimeout(() => {
+                currentquests.display = "none";
+                currentAnswers.style.display = "none";
                 preventspan.removeAttribute("style");
                 end.setAttribute("style", "display: flex");
                 congratulations.setAttribute("style", "display: block; animation: congratulationsAnimate 0.8s ease forwards;");
@@ -88,7 +90,6 @@ async function forEndTypeTwo({
                         resolve();
                     }, 2600);
                 }, (800 + 2000));
-
             }, 2600);
         });
     });
