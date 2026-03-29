@@ -1,4 +1,4 @@
-import { preventspan, contquest, end, congratulations, restart, arrow } from "../variables.js";
+import { preventspan, contquest, end, congratulations, restart, arrow, setNumberAsk } from "../variables.js";
 
 export { forEndTypeOne, forEndTypeTwo };
 
@@ -20,6 +20,7 @@ async function forEndTypeOne({
         answerCorrect.addEventListener("click", function () {
             preventspan.setAttribute("style", "display: block");
             contquest.classList.add("contquestDesappear");
+            setNumberAsk();
 
             for (let i = 0; i < currentButtons.length; i++) {
                 currentButtons[i].classList.remove(`enter${i + 1}`);
@@ -65,6 +66,7 @@ async function forEndTypeTwo({
             arrow.classList.remove("arrowAppear");
             arrow.classList.add("arrowDesappear");
             contquest.classList.add("todesappear");
+            setNumberAsk();
 
             for (let i = 0; i < currentButtons.length; i++) {
                 currentButtons[i].classList.remove("buttononevisible");

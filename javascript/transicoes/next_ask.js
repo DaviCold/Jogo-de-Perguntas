@@ -1,19 +1,22 @@
-import { continuar, padExposed } from "../variables";
+import { continuar, padExposed, setNumberAsk } from "../variables";
 
 export { nextAskTypeOne, nextAskTypeTwo };
 
 
 // Obs.: futureAnswers só contém nas funções que serão seguidas de perguntas tipo 2, porque são necessárias para seta.
 
-function nextAskTypeOne(
+function nextAskTypeOne({
     nextAnswers,
     nextButtons,
+    nextquests,
     nextLines
-) {
+}) {
     return new Promise ( function (resolve) {
         continuar.addEventListener("click", function() {
-            padExposed.setAttribute("style", "animation: toDesappear 1.5s ease forwards, borderAnimated 3s linear infinite forwards");
+            padExposed.setAttribute("style", "animation: toDesappear 2.7s ease forwards, borderAnimated 3s linear infinite forwards;");
+            nextquests.style.display = "block";
             preventspan.setAttribute("style", "display: block");
+            setNumberAsk();
             
             setTimeout(function(){
                 nextAnswers.setAttribute("style", "display: flex");
@@ -27,20 +30,21 @@ function nextAskTypeOne(
                 for (let i = 0; i < nextLines.length; i++) {
                     nextLines[i].setAttribute("style", "display: block");
                 }
-            }, 1000)
+            }, 1000);
 
             setTimeout(function () {
                 for (let i = 0; i < nextLines.length; i++) {
                     nextLines[i].classList.add(`line${i+1}q`);
                 }
-            }, 500)
+            }, 500);
 
             setTimeout (function () {
+                padExposed.removeAttribute("style");
+                preventspan.removeAttribute("style");
+
                 for (let i = 0; i < nextButtons.length; i++) {
                     nextButtons[i].classList.remove(`enter${i+1}`);
                     nextButtons[i].setAttribute("style", "opacity: 1");
-                    padExposed.style.display = "none";
-                    preventspan.removeAttribute("style");
                 }
 
                 resolve();
@@ -49,22 +53,25 @@ function nextAskTypeOne(
     });
 }
 
-function nextAskTypeTwo(
+function nextAskTypeTwo({
     futureAnswers,
     nextAnswers,
     nextButtons,
+    nextquests,
     nextLines
-) {
+}) {
     return new Promise ( function (resolve) {
         continuar.addEventListener("click", function() {
-            padExposed.setAttribute("style", "animation: toDesappear 1.5s ease forwards, borderAnimated 3s linear infinite forwards");
+            padExposed.setAttribute("style", "animation: toDesappear 2.7s ease forwards, borderAnimated 3s linear infinite forwards;");
+            nextquests.style.display = "block";
             nextAnswers.classList.add("answerstypetwo");
             preventspan.setAttribute("style", "display: block");
             arrow.setAttribute("style", "display:flex");
             arrow.classList.add("arrowAppear");
             let answersValue = Object.values(futureAnswers);
             setAnswersValues(answersValue);
-            preventspan.setAttribute("style", "display: block");
+            setIndexImg(0);
+            setNumberAsk();
 
             for (let i = 0; i < nextButtons.length; i++) {
                 nextButtons[i].classList.add("buttonpadtypetwo");
@@ -81,16 +88,16 @@ function nextAskTypeTwo(
                 for (let i = 0; i < nextLines.length; i++) {
                     nextLines[i].setAttribute("style", "display: block");
                 }
-            }, 1000)
+            }, 1000);
 
             setTimeout(function () {
                 for (let i = 0; i < nextLines.length; i++) {
                     nextLines[i].classList.add(`line${i+1}q`);
                 }
-            }, 500)
+            }, 500);
 
             setTimeout (function () {
-                padExposed.style.display = "none";
+                padExposed.removeAttribute("style");
                 nextButtons[0].classList.remove("toappear");
                 nextButtons[0].classList.add("buttonOneVisible");
                 preventspan.removeAttribute("style");

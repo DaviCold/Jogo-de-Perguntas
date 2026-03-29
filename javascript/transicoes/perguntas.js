@@ -1,6 +1,7 @@
 /* Importações e Exportações */
 
-import { preventspan, arrow, lines, setIndexImg, setAnswersValues } from "../variables.js";
+import { preventspan, arrow, padExposed, explicativa, contquest, contanswer, numberAsk } from "../variables.js";
+import { explic } from "../exposed.js";
 
 export { 
     configureTypeOneQuestionTransition, 
@@ -19,58 +20,42 @@ export {
 
 function configureTypeOneQuestionTransition ({
     answerCorrect,
-    nextAnswers,
     currentAnswers,
     currentButtons,
-    nextButtons,
-    nextquests,
-    nextLines,
     currentquests,
     currentLines
 }) {
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
-            nextAnswers.setAttribute("style", "display: flex");
-            nextquests.style.display = "block";
+            explicativa.innerText = explic[`explic${numberAsk}`];
+            contquest.classList.remove("contquestAppear");
+            contquest.classList.add("contquestDesappear");
             preventspan.setAttribute("style", "display: block");
-
+            
             for (let i = 0; i < currentButtons.length; i++) {
                 currentButtons[i].classList.remove(`enter${i+1}`);
                 currentButtons[i].classList.add(`exit${i+1}`);
             }
-
-            for (let i = 0; i < nextButtons.length; i++) {
-                nextButtons[i].classList.add(`enter${i+1}`);
-            }
-
-            for (let i = 0; i < nextLines.length; i++) {
-                nextLines[i].setAttribute("style", "display: block");
-            }
-
+            
             for (let i = 0; i < currentLines.length; i++) {
                 currentLines[i].classList.remove(`line${i+1}q`);
                 currentLines[i].classList.add(`linesexit`);
             }
 
-            setTimeout(function () {
-                currentquests.display = "none";
-
-                for (let i = 0; i < nextLines.length; i++) {
-                    nextLines[i].classList.add(`line${i+1}q`);
-                }
-            }, 500);
-
-            setTimeout (function () {
-                currentAnswers.style.display = "none";
-
-                for (let i = 0; i < nextButtons.length; i++) {
-                    nextButtons[i].classList.remove(`enter${i+1}`);
-                    nextButtons[i].setAttribute("style", "opacity: 1");
+            setTimeout(function() {
+                padExposed.setAttribute("style", "animation: toAppear 2.7s ease forwards, borderAnimated 3s linear infinite forwards; display: block;");
+                
+                setTimeout (function () {
+                    contquest.style.display = "none";
+                    contanswer.style.display = "none";
+                    currentquests.display = "none";
+                    currentAnswers.style.display = "none";
+                    padExposed.setAttribute("style", "display: block");
                     preventspan.removeAttribute("style");
-                }
-
-                resolve();
-            }, 2600);
+        
+                    resolve();
+                }, 3000);
+            }, 1500);
         });
     });
 }
@@ -80,40 +65,21 @@ function configureTypeOneQuestionTransition ({
 
 function configureTypeTwoQuestionTransition ({
     answerCorrect,
-    futureAnswers,
-    nextAnswers,
     currentAnswers,
     currentButtons,
-    nextButtons,
-    nextquests,
-    nextLines,
     currentquests,
     currentLines
 }) {
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
-            nextAnswers.classList.add("answerstypetwo");
-            nextquests.style.display = "block";
+            explicativa.innerText = explic[`explic${numberAsk}`];
+            contquest.classList.remove("contquestAppear");
+            contquest.classList.add("contquestDesappear");
             preventspan.setAttribute("style", "display: block");
-            arrow.setAttribute("style", "display:flex");
-            arrow.classList.add("arrowAppear");
-            let answersValue = Object.values(futureAnswers);
-            setAnswersValues(answersValue);
-
-            for (let i = 0; i < nextButtons.length; i++) {
-                nextButtons[i].classList.add("buttonpadtypetwo");
-            }
-
-            nextButtons[0].setAttribute("style", "display: block");
-            nextButtons[0].classList.add("toappear");
 
             for (let i = 0; i < currentButtons.length; i++) {
                 currentButtons[i].classList.remove(`enter${i+1}`);
                 currentButtons[i].classList.add(`exit${i+1}`);
-            }
-
-            for (let i = 0; i < nextLines.length; i++) {
-                nextLines[i].setAttribute("style", "display: block");
             }
 
             for (let i = 0; i < currentLines.length; i++) {
@@ -121,26 +87,20 @@ function configureTypeTwoQuestionTransition ({
                 currentLines[i].classList.add(`linesexit`);
             }
 
-            setTimeout(function () {
-                currentquests.display = "none";
-
-                for (let i = 0; i < nextLines.length; i++) {
-                    nextLines[i].classList.add(`line${i+1}q`);
-                }
-            }, 500);
-
-            setTimeout (function () {
-                currentAnswers.style.display = "none";
-                nextButtons[0].classList.remove("toappear");
-                nextButtons[0].classList.add("buttonOneVisible");
-                preventspan.removeAttribute("style");
-
-                for (let i = 0; i < nextButtons.length; i++) {
-                    nextButtons[i].classList.add("buttonInvisible");
-                }
-
-                resolve();
-            }, 2600);
+            setTimeout(function() {
+                padExposed.setAttribute("style", "animation: toAppear 2.7s ease forwards, borderAnimated 3s linear infinite forwards; display: block;");
+                
+                setTimeout (function () {
+                    contquest.style.display = "none";
+                    contanswer.style.display = "none";
+                    currentquests.display = "none";
+                    currentAnswers.style.display = "none";
+                    padExposed.setAttribute("style", "display: block");
+                    preventspan.removeAttribute("style");
+        
+                    resolve();
+                }, 3000);
+            }, 1500);
         });
     });
 }
@@ -150,31 +110,17 @@ function configureTypeTwoQuestionTransition ({
 
 function configureTypeTwoTwoQuestionTransition ({
     answerCorrect,
-    futureAnswers,
-    nextAnswers,
     currentAnswers,
     currentButtons,
-    nextButtons,
-    nextquests,
-    nextLines,
     currentquests,
     currentLines
 }) {
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
-            nextAnswers.classList.add("answerstypetwo");
-            nextquests.style.display = "block";
+            explicativa.innerText = explic[`explic${numberAsk}`];
+            contquest.classList.remove("contquestAppear");
+            contquest.classList.add("contquestDesappear");
             preventspan.setAttribute("style", "display: block");
-            let answersValue = Object.values(futureAnswers);
-            setAnswersValues(answersValue);
-            setIndexImg(0);
-
-            nextButtons[0].setAttribute("style", "display: block");
-            nextButtons[0].classList.add("toappear");
-            
-            for (let i = 0; i < nextButtons.length; i++) {
-                nextButtons[i].classList.add("buttonpadtypetwo");
-            }
 
             currentButtons[0].classList.remove("buttonOneVisible");
 
@@ -182,34 +128,25 @@ function configureTypeTwoTwoQuestionTransition ({
                 currentButtons[i].classList.add("todesappear");
             }
 
-            for (let i = 0; i < lines.linesq2.length; i++) {
-                nextLines[i].setAttribute("style", "display: block");
-            }
-
             for (let i = 0; i < currentLines.length; i++) {
                 currentLines[i].classList.remove(`line${i+1}q`);
                 currentLines[i].classList.add(`linesexit`);
             }
 
-            setTimeout(function () {
-                currentquests.display = "none";
+            setTimeout(function() {
+                padExposed.setAttribute("style", "animation: toAppear 2.7s ease forwards, borderAnimated 3s linear infinite forwards; display: block;");
                 
-                for (let i = 0; i < nextLines.length; i++) {
-                    nextLines[i].classList.add(`line${i+1}q`);
-                }
-            }, 500);
-
-            setTimeout (function () {
-                currentAnswers.style.display = "none";
-                nextButtons[0].classList.add("buttonOneVisible");
-                preventspan.removeAttribute("style");
-
-                for (let i = 0; i < nextButtons.length; i++) {
-                    nextButtons[i].classList.add("buttonInvisible");
-                }
-
-                resolve();
-            }, 2600);
+                setTimeout (function () {
+                    contquest.style.display = "none";
+                    contanswer.style.display = "none";
+                    currentquests.display = "none";
+                    currentAnswers.style.display = "none";
+                    padExposed.setAttribute("style", "display: block");
+                    preventspan.removeAttribute("style");
+        
+                    resolve();
+                }, 3000);
+            }, 1500);
         });
     });
 }
@@ -219,19 +156,16 @@ function configureTypeTwoTwoQuestionTransition ({
 
 function configureTypeTwoOneQuestionTransition ({
     answerCorrect,
-    nextAnswers,
     currentAnswers,
     currentButtons,
-    nextButtons,
-    nextquests,
-    nextLines,
     currentquests,
     currentLines
 }) {
     return new Promise ( function (resolve) {
         answerCorrect.addEventListener("click", function() {
-            nextAnswers.setAttribute("style", "display: flex");
-            nextquests.style.display = "block";
+            explicativa.innerText = explic[`explic${numberAsk}`];
+            contquest.classList.remove("contquestAppear");
+            contquest.classList.add("contquestDesappear");
             preventspan.setAttribute("style", "display: block");
             arrow.classList.remove("arrowAppear");
             arrow.classList.add("arrowDesappear");
@@ -241,39 +175,26 @@ function configureTypeTwoOneQuestionTransition ({
                 currentButtons[i].classList.add("todesappear");
             }
 
-            for (let i = 0; i < nextButtons.length; i++) {
-                nextButtons[i].classList.add(`enter${i+1}`);
-            }
-
-            for (let i = 0; i < nextLines.length; i++) {
-                nextLines[i].setAttribute("style", "display: block");
-            }
-
             for (let i = 0; i < currentLines.length; i++) {
                 currentLines[i].classList.remove(`line${i+1}q`);
                 currentLines[i].classList.add(`linesexit`);
             }
 
-            setTimeout(function () {
-                currentquests.display = "none";
+            setTimeout(function() {
+                padExposed.setAttribute("style", "animation: toAppear 2.7s ease forwards, borderAnimated 3s linear infinite forwards; display: block;");
                 
-                for (let i = 0; i < nextLines.length; i++) {
-                    nextLines[i].classList.add(`line${i+1}q`);
-                }
-            }, 500);
-
-            setTimeout (function () {
-                currentAnswers.style.display = "none";
-                arrow.setAttribute("style", "display: none");
-
-                for (let i = 0; i < nextButtons.length; i++) {
-                    nextButtons[i].classList.remove(`enter${i+1}`);
-                    nextButtons[i].setAttribute("style", "opacity: 1");
+                setTimeout (function () {
+                    contquest.style.display = "none";
+                    contanswer.style.display = "none";
+                    currentquests.display = "none";
+                    currentAnswers.style.display = "none";
+                    padExposed.setAttribute("style", "display: block");
                     preventspan.removeAttribute("style");
-                }
-
-                resolve();
-            }, 2600);
+                    arrow.setAttribute("style", "display: none");
+                    
+                    resolve();
+                }, 3000);
+            }, 1500);
         });
     });
 }

@@ -9,12 +9,12 @@ import {
     configureTypeTwoTwoQuestionTransition, 
     configureTypeTwoOneQuestionTransition
 } from "./transicoes/perguntas.js";
+import { nextAskTypeOne, nextAskTypeTwo } from "./transicoes/next_ask.js";
 
 export { wait };
 
 
 /* 
-
 Configure: (do ponto de vista da pergunta de onde você está)
     a resposta correta,
     as próximas respostas (estas estão separadas por ID),
@@ -30,11 +30,10 @@ Configure: (do ponto de vista da pergunta de onde você está)
 Obs.1: usar .then após a transição chamando as funções das dduas setas. Server para o evento de click das setas só ser disponibilizado depois da animação. (Como uma parede invisível "aparece / display:block", impedindo o clicar nas setas, não faz muita diferença. Mas é uma segunda forma de impedir de clicar nas setas)
 
 Obs.2: as chaves futureAnswers são somente para questões que vão para o tipo 2. No caso coloquei nas do tipo 1 para caso futuramente eu queira mudar para o tipo 2, facilitando o processo, assim, eu só precisarei mudar o nome da função.
-
 */
 
-function forQuest2() {
-    return configureTypeOneQuestionTransition({
+const askObject = {
+    ask1: {
         answerCorrect: answers1.answer13,
         futureAnswers: answers2,
         nextAnswers: answers.answers2,
@@ -45,11 +44,9 @@ function forQuest2() {
         nextLines: lines.linesq2,
         currentquests: quests.quest1,
         currentLines: lines.linesq1
-    });
-}
+    },
 
-function forQuest3() {
-    return configureTypeOneQuestionTransition({
+    ask2: {
         answerCorrect: answers2.answer24,
         futureAnswers: answers3,
         nextAnswers: answers.answers3,
@@ -60,11 +57,9 @@ function forQuest3() {
         nextLines: lines.linesq3,
         currentquests: quests.quest2,
         currentLines: lines.linesq2
-    });
-}
+    },
 
-function forQuest4() {
-    return configureTypeOneQuestionTransition({
+    ask3: {
         answerCorrect: answers3.answer31,
         futureAnswers: answers4,
         nextAnswers: answers.answers4,
@@ -75,11 +70,9 @@ function forQuest4() {
         nextLines: lines.linesq4,
         currentquests: quests.quest3,
         currentLines: lines.linesq3
-    });
-}
+    },
 
-function forQuest5() {
-    return configureTypeOneQuestionTransition({
+    ask4: {
         answerCorrect: answers4.answer43,
         futureAnswers: answers5,
         nextAnswers: answers.answers5,
@@ -90,11 +83,9 @@ function forQuest5() {
         nextLines: lines.linesq5,
         currentquests: quests.quest4,
         currentLines: lines.linesq4
-    });
-}
+    },
 
-function forQuest6() {
-    return configureTypeTwoQuestionTransition({
+    ask5: {
         answerCorrect: answers5.answer52,
         futureAnswers: answers6,
         nextAnswers: answers.answers6,
@@ -105,14 +96,9 @@ function forQuest6() {
         nextLines: lines.linesq6,
         currentquests: quests.quest5,
         currentLines: lines.linesq5
-    }).then(() => {
-        leftArrow();
-        rightArrow();
-    });
-}
+    },
 
-function forQuest7() {
-    return configureTypeTwoTwoQuestionTransition({
+    ask6: {
         answerCorrect: answers6.answer64,
         futureAnswers: answers7,
         nextAnswers: answers.answers7,
@@ -123,14 +109,9 @@ function forQuest7() {
         nextLines: lines.linesq7,
         currentquests: quests.quest6,
         currentLines: lines.linesq6
-    }).then(() => {
-        leftArrow();
-        rightArrow();
-    });
-}
+    },
 
-function forQuest8() {
-    return configureTypeTwoOneQuestionTransition({
+    ask7: {
         answerCorrect: answers7.answer71,
         futureAnswers: answers8,
         nextAnswers: answers.answers8,
@@ -141,11 +122,9 @@ function forQuest8() {
         nextLines: lines.linesq8,
         currentquests: quests.quest7,
         currentLines: lines.linesq7
-    });
-}
+    },
 
-function forQuest9() {
-    return configureTypeOneQuestionTransition({
+    ask8: {
         answerCorrect: answers8.answer81,
         futureAnswers: answers9,
         nextAnswers: answers.answers9,
@@ -156,11 +135,9 @@ function forQuest9() {
         nextLines: lines.linesq9,
         currentquests: quests.quest8,
         currentLines: lines.linesq8
-    });
-}
+    },
 
-function forQuest10() {
-    return configureTypeOneQuestionTransition({
+    ask9: {
         answerCorrect: answers9.answer94,
         futureAnswers: answers10,
         nextAnswers: answers.answers10,
@@ -171,16 +148,60 @@ function forQuest10() {
         nextLines: lines.linesq10,
         currentquests: quests.quest9,
         currentLines: lines.linesq9
-    });
-}
+    },
 
-function forFinish() {
-    return forEndTypeOne({
+    ask10: {
         answerCorrect: answers10.answer102,
         currentButtons: buttonq.buttonq10,
         currentAnswers: answers.answers10,
         currentquests: quests.quest10
+    }
+}
+
+function forQuest2() {
+    return configureTypeOneQuestionTransition(askObject.ask1).then(nextAskTypeOne(askObject.ask1));
+}
+
+function forQuest3() {
+    return configureTypeOneQuestionTransition(askObject.ask2).then(nextAskTypeOne(askObject.ask2));
+}
+
+function forQuest4() {
+    return configureTypeOneQuestionTransition(askObject.ask3).then(nextAskTypeOne(askObject.ask3));
+}
+
+function forQuest5() {
+    return configureTypeOneQuestionTransition(askObject.ask4).then(nextAskTypeOne(askObject.ask4));
+}
+
+function forQuest6() {
+    return configureTypeTwoQuestionTransition(askObject.ask5).then(nextAskTypeTwo(askObject.ask5)).then(() => {
+        leftArrow();
+        rightArrow();
     });
+}
+
+function forQuest7() {
+    return configureTypeTwoTwoQuestionTransition(askObject.ask6).then(nextAskTypeTwo(askObject.ask6)).then(() => {
+        leftArrow();
+        rightArrow();
+    });
+}
+
+function forQuest8() {
+    return configureTypeTwoOneQuestionTransition(askObject.ask7);
+}
+
+function forQuest9() {
+    return configureTypeOneQuestionTransition(askObject.ask8).then(nextAskTypeOne(askObject.ask8));
+}
+
+function forQuest10() {
+    return configureTypeOneQuestionTransition(askObject.ask9).then(nextAskTypeOne(askObject.ask9));
+}
+
+function forFinish() {
+    return forEndTypeOne(askObject.ask10);
 }
 
 
@@ -194,14 +215,23 @@ Conclusão: Await na função abaixo, no atual momento não faz diferença. (23/
 
 async function wait() {
     await forQuest1();
+    await
     await forQuest2();
+    await
     await forQuest3();
+    await
     await forQuest4();
+    await
     await forQuest5();
+    await
     await forQuest6();
+    await
     await forQuest7();
+    await
     await forQuest8();
+    await
     await forQuest9();
+    await
     await forQuest10();
     await forFinish();
     await forMenu();

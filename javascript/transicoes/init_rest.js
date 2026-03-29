@@ -1,4 +1,4 @@
-import { restart, preventspan, contanswer, contquest, arrow, startpad, menu, end, quests, lines, answers, buttonq } from "../variables.js";
+import { restart, preventspan, contanswer, contquest, arrow, startpad, menu, end, quests, lines, answers, buttonq, setNumberAsk } from "../variables.js";
 
 export { forQuest1, forMenu };
 
@@ -11,7 +11,8 @@ async function forQuest1() {
             menu.setAttribute("style", "animation: toDesappear 1.5s ease forwards;");
             contanswer.setAttribute("style", "display: flex");
             preventspan.setAttribute("style", "display: block");
-
+            setNumberAsk();
+            
             setTimeout(function () {
                 answers.answers1.setAttribute("style", "display: flex");
                 quests.quest1.style.display = "block";

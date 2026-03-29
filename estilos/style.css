@@ -364,9 +364,17 @@ section {
     }
 }
 
+.toappearExposed {
+    animation: toAppear 2.7s ease forwards, borderAnimated 3s linear infinite forwards;
+}
+
+.todesappearExposed {
+    animation: toDesappear 2.7s ease forwards, borderAnimated 3s linear infinite forwards;
+}
+
 #padExposed {
     display: none;
-    position: relative;
+    position: absolute;
     width: 70%;
     height: 80%;
     max-width: 600px;
@@ -378,9 +386,9 @@ section {
 
     & #exposed {
         display: flex;
+        position: relative;
         flex-flow: column nowrap;
         justify-content: space-between;
-        position: relative;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -542,12 +550,11 @@ section {
         animation: toAppear 2.7s ease 1s forwards, borderAnimated 5s linear infinite forwards;
 
     }
-
+    
     & .todesappear {
         animation: toDesappear 2.7s ease forwards, borderAnimated 5s linear infinite forwards;
-
     }
-
+    
     & .answers {
         display: none;
         position: absolute;
