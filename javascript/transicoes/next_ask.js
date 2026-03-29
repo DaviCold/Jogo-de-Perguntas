@@ -1,4 +1,4 @@
-import { continuar, padExposed, setNumberAsk } from "../variables";
+import { continuar, padExposed, setNumberAsk } from "../variables.js";
 
 export { nextAskTypeOne, nextAskTypeTwo };
 

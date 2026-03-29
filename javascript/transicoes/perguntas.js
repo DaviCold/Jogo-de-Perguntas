@@ -54,7 +54,7 @@ function configureTypeOneQuestionTransition ({
                     preventspan.removeAttribute("style");
         
                     resolve();
-                }, 3000);
+                }, 2600);
             }, 1500);
         });
     });
@@ -99,7 +99,7 @@ function configureTypeTwoQuestionTransition ({
                     preventspan.removeAttribute("style");
         
                     resolve();
-                }, 3000);
+                }, 2600);
             }, 1500);
         });
     });
@@ -145,7 +145,7 @@ function configureTypeTwoTwoQuestionTransition ({
                     preventspan.removeAttribute("style");
         
                     resolve();
-                }, 3000);
+                }, 2600);
             }, 1500);
         });
     });
@@ -193,7 +193,7 @@ function configureTypeTwoOneQuestionTransition ({
                     arrow.setAttribute("style", "display: none");
                     
                     resolve();
-                }, 3000);
+                }, 2600);
             }, 1500);
         });
     });
