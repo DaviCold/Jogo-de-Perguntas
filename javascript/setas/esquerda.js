@@ -17,7 +17,7 @@ async function leftArrow() {
         setTimeout(() => {
             answersValues[previousIndex].classList.remove("leftdisable");
             answersValues[indexImgC].classList.remove("leftactive");
-            answersValues[previousIndex].setAttribute("style", "display: none");
+            answersValues[previousIndex].removeAttribute("style");
             answersValues[indexImgC].setAttribute("style", "display: block")
             preventspan.removeAttribute("style")
             setIsAnimating(false)

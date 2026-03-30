@@ -17,7 +17,7 @@ async function rightArrow() {
         setTimeout(() => {
             answersValues[previousIndex].classList.remove("rightdisable");
             answersValues[indexImgC].classList.remove("rightactive");
-            answersValues[previousIndex].setAttribute("style", "display: none");
+            answersValues[previousIndex].removeAttribute("style");
             answersValues[indexImgC].setAttribute("style", "display: block");
             preventspan.removeAttribute("style");
             setIsAnimating(false)

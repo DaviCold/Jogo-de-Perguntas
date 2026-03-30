@@ -2,13 +2,8 @@ import leftArrow from "./setas/esquerda.js";
 import rightArrow from "./setas/direita.js";
 import { answers, answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10, buttonq, quests, lines } from "./variables.js";
 import { forQuest1, forMenu } from "./transicoes/init_rest.js";
-import { forEndTypeOne } from "./transicoes/last_ask.js";
-import {
-    configureTypeOneQuestionTransition, 
-    configureTypeTwoQuestionTransition, 
-    configureTypeTwoTwoQuestionTransition, 
-    configureTypeTwoOneQuestionTransition
-} from "./transicoes/perguntas.js";
+import { forEnd } from "./transicoes/last_ask.js";
+import { typeOneQuestionTransition, typeTwoQuestionTransition} from "./transicoes/perguntas.js";
 import { nextAskTypeOne, nextAskTypeTwo } from "./transicoes/next_ask.js";
 
 export { wait };
@@ -27,9 +22,15 @@ Configure: (do ponto de vista da pergunta de onde você está)
     as caixa de linhas da pergunta atual (caixa dentro do container de perguntas), 
     e as linhas da caixa da pergunta atual. 
 
-Obs.1: usar .then após a transição chamando as funções das dduas setas. Server para o evento de click das setas só ser disponibilizado depois da animação. (Como uma parede invisível "aparece / display:block", impedindo o clicar nas setas, não faz muita diferença. Mas é uma segunda forma de impedir de clicar nas setas)
+Obs.1: usar .then após a transição chamando as funções das duas setas. Serve para que o evento de click das setas só seja disponibilizado depois da animação. (Como uma parede invisível "aparece / display:block", impedindo o clicar nas setas, não faz muita diferença. Mas é uma segunda forma de impedir de clicar nas setas)
 
-Obs.2: as chaves futureAnswers são somente para questões que vão para o tipo 2. No caso coloquei nas do tipo 1 para caso futuramente eu queira mudar para o tipo 2, facilitando o processo, assim, eu só precisarei mudar o nome da função.
+Obs.2: Utilizar "typeOneQuestionTransition" quando a questão anterior for do tipo 1 e usar "typeTwoQuestionTransition" quando a questão anterior for do tipo 2.
+
+Obs.3: "typeOneQuestionTransition" e "typeOneQuestionTransition" precisam receber o objeto da questão atual como parâmetro. As funções "ForQuest1" e "forEnd" (está não recebe parâmetro algum) você tem que configura-las manualmente no arquivo "init_rest.js" e "last_ask.js" respectivamente.
+
+Obs.4: as chaves futureAnswers são somente para questões que vão para o tipo 2. No caso coloquei nas do tipo 1 para caso futuramente eu queira mudar para o tipo 2, facilitando o processo, assim, eu só precisarei mudar o nome da função.
+
+Obs.5: A última questão não precisa das variáveis que começam com "future" ou "next", ela só precisa das variáveis que começam com "current" e a "answerCorrect". ! Mantive o padrão dos objetos de variaveis para caso eu queira fazer alguma modificação que necessite-as. Lembre-se de colocar como comentário as variáveis que não existem para não causar erro. !
 */
 
 const askObject = {
@@ -152,56 +153,62 @@ const askObject = {
 
     ask10: {
         answerCorrect: answers10.answer102,
-        currentButtons: buttonq.buttonq10,
+        // futureAnswers: answers11,
+        // nextAnswers: answers.answers11,
         currentAnswers: answers.answers10,
-        currentquests: quests.quest10
+        currentButtons: buttonq.buttonq10,
+        // nextButtons: buttonq.buttonq11,
+        // nextquests: quests.quest11,
+        // nextLines: lines.linesq11,
+        currentquests: quests.quest10,
+        currentLines: lines.linesq10
     }
 }
 
 function forQuest2() {
-    return configureTypeOneQuestionTransition(askObject.ask1).then(nextAskTypeOne(askObject.ask1));
+    return typeOneQuestionTransition(askObject.ask1).then(() => nextAskTypeOne(askObject.ask1));
 }
 
 function forQuest3() {
-    return configureTypeOneQuestionTransition(askObject.ask2).then(nextAskTypeOne(askObject.ask2));
+    return typeOneQuestionTransition(askObject.ask2).then(() => nextAskTypeOne(askObject.ask2));
 }
 
 function forQuest4() {
-    return configureTypeOneQuestionTransition(askObject.ask3).then(nextAskTypeOne(askObject.ask3));
+    return typeOneQuestionTransition(askObject.ask3).then(() => nextAskTypeOne(askObject.ask3));
 }
 
 function forQuest5() {
-    return configureTypeOneQuestionTransition(askObject.ask4).then(nextAskTypeOne(askObject.ask4));
+    return typeOneQuestionTransition(askObject.ask4).then(() => nextAskTypeOne(askObject.ask4));
 }
 
 function forQuest6() {
-    return configureTypeTwoQuestionTransition(askObject.ask5).then(nextAskTypeTwo(askObject.ask5)).then(() => {
+    return typeOneQuestionTransition(askObject.ask5).then(() => nextAskTypeTwo(askObject.ask5)).then(() => {
         leftArrow();
         rightArrow();
     });
 }
 
 function forQuest7() {
-    return configureTypeTwoTwoQuestionTransition(askObject.ask6).then(nextAskTypeTwo(askObject.ask6)).then(() => {
+    return typeTwoQuestionTransition(askObject.ask6).then(() => nextAskTypeTwo(askObject.ask6)).then(() => {
         leftArrow();
         rightArrow();
     });
 }
 
 function forQuest8() {
-    return configureTypeTwoOneQuestionTransition(askObject.ask7);
+    return typeTwoQuestionTransition(askObject.ask7).then(() => nextAskTypeOne(askObject.ask7));
 }
 
 function forQuest9() {
-    return configureTypeOneQuestionTransition(askObject.ask8).then(nextAskTypeOne(askObject.ask8));
+    return typeOneQuestionTransition(askObject.ask8).then(() => nextAskTypeOne(askObject.ask8));
 }
 
 function forQuest10() {
-    return configureTypeOneQuestionTransition(askObject.ask9).then(nextAskTypeOne(askObject.ask9));
+    return typeOneQuestionTransition(askObject.ask9).then(() => nextAskTypeOne(askObject.ask9));
 }
 
 function forFinish() {
-    return forEndTypeOne(askObject.ask10);
+    return typeOneQuestionTransition(askObject.ask10).then(() => forEnd());
 }
 
 
@@ -215,24 +222,16 @@ Conclusão: Await na função abaixo, no atual momento não faz diferença. (23/
 
 async function wait() {
     await forQuest1();
-    await
     await forQuest2();
-    await
     await forQuest3();
-    await
     await forQuest4();
-    await
     await forQuest5();
-    await
     await forQuest6();
-    await
     await forQuest7();
-    await
     await forQuest8();
-    await
     await forQuest9();
-    await
     await forQuest10();
     await forFinish();
     await forMenu();
+    wait();
 }

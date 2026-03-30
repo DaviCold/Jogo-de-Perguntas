@@ -30,18 +30,20 @@ async function forQuest1() {
                 for (let i = 0; i < lines.linesq1.length; i++) {
                     lines.linesq1[i].classList.add(`line${i + 1}q`);
                 }
+
+                setTimeout(function () {
+                    for (let i = 0; i < buttonq.buttonq1.length; i++) {
+                        buttonq.buttonq1[i].classList.remove(`enter${i + 1}`);
+                        buttonq.buttonq1[i].setAttribute("style", "opacity: 1");
+                        menu.setAttribute("style", "display: none;")
+                        preventspan.setAttribute("style", "display: none");
+                    }
+    
+                    resolve();
+                }, 2500);
             }, 1000);
 
-            setTimeout(function () {
-                for (let i = 0; i < buttonq.buttonq1.length; i++) {
-                    buttonq.buttonq1[i].classList.remove(`enter${i + 1}`);
-                    buttonq.buttonq1[i].setAttribute("style", "opacity: 1");
-                    menu.style.display = "none";
-                    preventspan.setAttribute("style", "display: none");
-                }
-                resolve();
-            }, 3500);;
-        });
+        }, { once: true });
     });
 }
 
@@ -54,7 +56,6 @@ async function forMenu() {
             preventspan.setAttribute("style", "display: block");
             restart.classList.remove("toappear");
             restart.classList.add("todesappear");
-            menu.style.display = "flex";
 
             contanswer.setAttribute("style", "display: none");
             contquest.classList.remove("contquestDesappear");
@@ -67,16 +68,17 @@ async function forMenu() {
             Object.values(buttonq).forEach(group => group.forEach(button => { button.removeAttribute("style"), button.classList.remove("enter1", "enter2", "enter3", "enter4", "exit1", "exit2", "exit3", "exit4", "todesappear", "toappear", "buttonInvisible") }));
 
             setTimeout(() => {
-                menu.setAttribute("style", "animation: toAppear 1.5s ease forwards;");
+                menu.setAttribute("style", "animation: toAppear 1.5s ease forwards; display: flex;");
                 restart.classList.remove("todesappear");
                 restart.removeAttribute("style");
                 end.removeAttribute("style");
                 setTimeout(() => {
+                    menu.removeAttribute("style");
                     preventspan.removeAttribute("style");
 
                     resolve();
                 }, 1500);
-            }, 2600);
-        });
+            }, 2400);
+        }, { once: true });
     });
 }

@@ -85,7 +85,7 @@ function setAnswersValues(answersValue) {
 
 let numberAsk = 0;
 function setNumberAsk () {
-    if (numberAsk <= numberQuestions) {
+    if (numberAsk < numberQuestions) {
         numberAsk ++;
     } else {
         numberAsk = 0;
